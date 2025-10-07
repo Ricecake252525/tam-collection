@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tam Collection</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="left">
+    <div class="content-left">
+      <h1>Tam Collection</h1>
+      <p>A collection of our experience during our stay at FEU Roosevelt Marikina.</p>
+    </div>
+  </div>
+
+  <div class="right">
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Events</a>
+      <a href="#">About</a>
+    </nav>
+
+    <div class="profile">
+      <div class="carousel-container">
+        <button class="prev">&#10094;</button>
+
+        <div class="carousel">
+          <img src="casing1.jpg" alt="JM" class="active">
+          <img src="mog.png" alt="Noel">
+          <img src="berns.png" alt="Ramwil">
+        </div>
+
+        <button class="next">&#10095;</button>
+      </div>
+
+      <div class="bio">
+        <h2 id="member-name">Hi, I'm JM</h2>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const images = document.querySelectorAll('.carousel img');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+    const nameText = document.getElementById('member-name');
+
+    const members = [
+      { name: "Hi, I'm JM" },
+      { name: "Hi, I'm Noel" },
+      { name: "Hi, I'm Ramwil" }
+    ];
+
+    let current = 0;
+
+    function showImage(index) {
+      images.forEach((img, i) => {
+        img.classList.toggle('active', i === index);
+      });
+      nameText.textContent = members[index].name;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      current = (current - 1 + images.length) % images.length;
+      showImage(current);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      current = (current + 1) % images.length;
+      showImage(current);
+    });
+  </script>
+</body>
+</html>

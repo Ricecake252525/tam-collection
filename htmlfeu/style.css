@@ -1,0 +1,152 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Layout */
+body {
+  display: flex;
+  height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+}
+
+/* Left BG */
+.left {
+  flex: 1;
+  background-color: #1a4731;
+  color: #f9e547;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.content-left h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+/* Right BG */
+.right {
+  flex: 1;
+  background-color: #f9e547;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Navbar */
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 40px;
+  gap: 30px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #1a4731;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #145a32;
+}
+
+/* Profile & Carousel */
+.profile {
+  text-align: center;
+  margin-top: 60px;
+}
+
+/* Container for arrows + carousel */
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Pic */
+.carousel {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.carousel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.carousel img.active {
+  opacity: 1;
+}
+
+/* Buttons */
+.prev, .next {
+  background-color: #1a4731;
+  border: none;
+  color: #f9e547;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.prev:hover, .next:hover {
+  background-color: #145a32;
+  transform: scale(1.1);
+}
+
+/* Bio */
+.bio {
+  margin-top: 20px;
+}
+
+.bio h2 {
+  color: #1a4731;
+  font-size: 1.5rem;
+}
+
+/* Responsible */
+@media (max-width: 900px) {
+body {
+  flex-direction: column;
+  }
+
+.left, .right {
+  flex: none;
+  width: 100%;
+  height: 50vh;
+  }
+
+nav {
+  justify-content: center;
+  }
+
+.carousel-container {
+  flex-direction: row;
+  gap: 10px;
+  }
+
+.profile {
+  margin-top: 20px;
+  }
+}
