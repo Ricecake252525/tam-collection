@@ -27,3 +27,18 @@ const images = document.querySelectorAll('.carousel img');
       current = (current + 1) % images.length;
       showImage(current);
     });
+
+// Dropdown
+function toggleDropdown() {
+  document.getElementById("dropdownMenu").classList.toggle("show");
+}
+
+// Close dropdown when clicking outside
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    const dropdowns = document.getElementsByClassName("dropdown-content");
+    for (let i = 0; i < dropdowns.length; i++) {
+      dropdowns[i].classList.remove('show');
+    }
+  }
+};
