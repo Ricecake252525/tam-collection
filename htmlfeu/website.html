@@ -10,6 +10,7 @@
 <body>
   <div class="left">
     <div class="content-left">
+      <img src="logo.png" alt="JM" class="logo">
       <h1>Tam Collection</h1>
       <p>A collection of our experience during our stay at FEU Roosevelt Marikina.</p>
     </div>
@@ -18,29 +19,38 @@
   <div class="right">
     <nav>
       <a href="#">Home</a>
-      <a href="#">Events</a>
+
+      <div class="dropdown">
+        <a href="#" class="dropbtn" onclick="toggleDropdown()">FEUR Events ▾</a>
+        <div class="dropdown-content" id="dropdownMenu">
+          <a href="#">Sinag Tam</a>
+          <a href="#">Sinag Sports</a>
+          <a href="#">Orientations</a>
+        </div>
+      </div>
+
       <a href="#">About</a>
     </nav>
 
-    <div class="profile">
-      <div class="carousel-container">
-        <button class="prev">&#10094;</button>
+  <div class="profile">
+    <div class="carousel-container">
 
-        <div class="carousel">
-          <img src="casing1.jpg" alt="JM" class="active">
-          <img src="mog.png" alt="Noel">
-          <img src="berns.png" alt="Ramwil">
-        </div>
+      <button class="prev">&#10094;</button>
 
-        <button class="next">&#10095;</button>
-      </div>
+    <div class="carousel">
+      <img src="casing1.jpg" alt="JM" class="active">
+      <img src="mog.png" alt="Noel">
+      <img src="berns.png" alt="Ramwil">
+    </div>
 
-      <div class="bio">
-        <h2 id="member-name">Hi, I'm JM</h2>
-      </div>
+    <button class="next">&#10095;</button>
+    </div>
+
+    <div class="bio">
+    <h2 id="member-name">Hi, I'm JM</h2>
+  </div>
     </div>
   </div>
-
-  <script src="script.js"></script>
+   <script src="script.js"></script>
 </body>
 </html>
