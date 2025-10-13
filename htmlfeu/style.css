@@ -271,11 +271,18 @@ body.transition .profile {
   object-fit: cover;
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
-
-.member p {
+.member .name {
+  font-weight: 700;
+  font-size: 1.1rem;
   color: #1a4731;
   margin-top: 10px;
-  font-weight: 600;
+}
+
+.member .desc {
+  font-size: 0.9rem;
+  color: #1a4731;
+  opacity: 0.8;
+  margin-top: 4px;
 }
 
 /* Expanding yellow background */
