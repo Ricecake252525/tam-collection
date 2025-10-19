@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Tam Collection</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- LEFT PANEL -->
   <div class="left" id="leftPanel">
     <div class="content-left">
       <img src="logo.png" alt="logo" class="logo">
@@ -16,85 +17,89 @@
     </div>
   </div>
 
+  <!-- RIGHT PANEL -->
   <div class="right" id="rightPanel">
     <nav>
       <a href="#" id="homeBtn">Home</a>
 
       <div class="dropdown">
-        <a href="#" class="dropbtn" onclick="toggleDropdown()">FEUR Events ▾</a>
+        <a href="#" class="dropbtn" onclick="toggleDropdown(event)">FEUR Events ▾</a>
         <div class="dropdown-content" id="dropdownMenu">
-          <a href="sinag-tam.html">Sinag Tam</a>
-          <a href="sinag-sports.html">Sinag Sports</a>
-          <a href="orientation.html">Orientation</a>
+          <a href="#">Sinag Tam</a>
+          <a href="#">Sinag Sports</a>
+          <a href="#">Orientation</a>
         </div>
       </div>
 
       <a href="#" id="aboutBtn">About</a>
     </nav>
 
-    <!-- Home Section -->
+    <!-- HOME SECTION -->
     <div class="profile" id="homeSection">
       <div class="carousel-container">
-        <button class="prev">&#10094;</button>
+        <button class="prev" aria-label="Prev">&#10094;</button>
         <div class="carousel">
           <img src="casing1.jpg" alt="JM" class="active">
           <img src="mog.png" alt="Noel">
           <img src="berns.png" alt="Ramwil">
         </div>
-        <button class="next">&#10095;</button>
+        <button class="next" aria-label="Next">&#10095;</button>
       </div>
+
       <div class="bio">
         <h2 id="member-name">Hi, I'm JM</h2>
       </div>
+
+      <!-- SUBJECT PREVIEWS -->
       <div class="subjects">
-  <div class="subject-card" onclick="expandSubject('purposive')">
-    <div class="subject-header">
-      <span>Purposive</span>
-      <a href="purposive.html" class="arrow">➜</a>
-    </div>
-    <img src="shrek.jpg" alt="Purposive">
-  </div>
+        <div class="subject-card">
+          <div class="subject-header">
+            <span>Purposive</span>
+            <a href="#" class="arrow" onclick="expandSubject('purposive', event)">➜</a>
+          </div>
+          <img src="shrek.jpg" alt="Purposive">
+        </div>
 
-  <div class="subject-card" onclick="expandSubject('pe')">
-    <div class="subject-header">
-      <span>PE</span>
-      <a href="pe.html" class="arrow">➜</a>
-    </div>
-    <img src="shrek.jpg" alt="PE">
-  </div>
+        <div class="subject-card">
+          <div class="subject-header">
+            <span>PE</span>
+            <a href="#" class="arrow" onclick="expandSubject('pe', event)">➜</a>
+          </div>
+          <img src="shrek.jpg" alt="PE">
+        </div>
 
-  <div class="subject-card" onclick="expandSubject('nstp')">
-    <div class="subject-header">
-      <span>NSTP</span>
-      <a href="nstp.html" class="arrow">➜</a>
-    </div>
-    <img src="shrek.jpg" alt="NSTP">
-  </div>
-</div>
-</div>
-
-<!-- About Section -->
-<div class="about-section" id="aboutSection">
-  <h2>About Us</h2>
-    <div class="members">
-      <div class="member">
-        <img src="casing1.jpg" alt="JM">
-        <p class="name">JM - Member</p>
-        <p class="desc">Hi, I'm John Michael <br>1st year section 2 of BSIT</p>
-      </div>
-      <div class="member">
-        <img src="mog.png" alt="Noel">
-        <p class="name">Noel - Member</p>
-        <p class="desc">Hi, I'm Noel Angelo <br>1st year section 2 of BSIT</p>
-      </div>
-      <div class="member">
-        <img src="berns.png" alt="Ramwil">
-        <p class="name">Ramwil - Member</p>
-        <p class="desc">Hi, I'm Ramwil <br>1st year section 2 of BSIT</p>
+        <div class="subject-card">
+          <div class="subject-header">
+            <span>NSTP</span>
+            <a href="#" class="arrow" onclick="expandSubject('nstp', event)">➜</a>
+          </div>
+          <img src="shrek.jpg" alt="NSTP">
+        </div>
       </div>
     </div>
+
+    <!-- ABOUT SECTION -->
+    <div class="about-section" id="aboutSection">
+      <h2>About Us</h2>
+      <div class="members">
+        <div class="member">
+          <img src="casing1.jpg" alt="JM">
+          <p class="name">JM - Member</p>
+          <p class="desc">Hi, I'm John Michael <br>1st year section 2 of BSIT</p>
+        </div>
+        <div class="member">
+          <img src="mog.png" alt="Noel">
+          <p class="name">Noel - Member</p>
+          <p class="desc">Hi, I'm Noel Angelo <br>1st year section 2 of BSIT</p>
+        </div>
+        <div class="member">
+          <img src="berns.png" alt="Ramwil">
+          <p class="name">Ramwil - Member</p>
+          <p class="desc">Hi, I'm Ramwil <br>1st year section 2 of BSIT</p>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 
   <script src="script.js"></script>
 </body>
