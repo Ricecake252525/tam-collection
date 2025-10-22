@@ -46,7 +46,7 @@ const members = [
 
 let current = 0;
 
-// Carousel
+// CAROUSEL
 function showImage(index) {
   images.forEach((img, i) => img.classList.toggle('active', i === index));
   nameText.textContent = members[index].name;
@@ -62,7 +62,7 @@ nextBtn.onclick = () => {
   showImage(current);
 };
 
-// Dropdown
+// DROPDOWN MENU
 function toggleDropdown(event) {
   event.preventDefault();
   document.getElementById("dropdownMenu").classList.toggle("show");
@@ -70,26 +70,30 @@ function toggleDropdown(event) {
 
 window.onclick = (e) => {
   if (!e.target.matches('.dropbtn')) {
-    document.querySelectorAll(".dropdown-content").forEach(d => d.classList.remove("show"));
+    document
+      .querySelectorAll(".dropdown-content")
+      .forEach(d => d.classList.remove("show"));
   }
 };
 
-// Expand Subject (Yellow transition)
+// SUBJECT EXPANSION
 function expandSubject(subjectKey) {
   const s = subjects[subjectKey];
   if (!s) return;
+
   document.body.classList.add('full-green');
   leftPanel.classList.add('expanded');
   navLinks.forEach(link => link.classList.add('nav-yellow'));
 
   leftPanel.innerHTML = `
+    <button class="close-btn" onclick="closeExpanded()">✕</button>
     <div class="expanded-content">
       <img src="shrek.jpg" alt="${s.alt}">
       <h2>${s.title}</h2>
     </div>`;
 }
 
-// Expand Event (Green transition)
+// EVENT EXPANSION
 function expandEvent(eventKey) {
   const e = events[eventKey];
   if (!e) return;
@@ -97,15 +101,18 @@ function expandEvent(eventKey) {
   document.body.classList.add("full-green");
   leftPanel.classList.add("expanded");
 
-  // Change nav color for visibility
-  navLinks.forEach(link => link.style.color = "#f9e547");
+  navLinks.forEach(link => (link.style.color = "#f9e547"));
 
-  // Show event photos
-  let photosHTML = e.images
-    .map(src => `<img src="${src}" alt="${e.title}" style="width:250px;height:250px;border-radius:10px;margin:10px;">`)
+  const photosHTML = e.images
+    .map(
+      src => `
+      <img src="${src}" alt="${e.title}" 
+      style="width:250px;height:250px;border-radius:10px;margin:10px;">`
+    )
     .join("");
 
   leftPanel.innerHTML = `
+    <button class="close-btn" onclick="closeExpanded()">✕</button>
     <div class="expanded-content">
       <h2>${e.title}</h2>
       <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:20px;margin-top:20px;">
@@ -114,30 +121,47 @@ function expandEvent(eventKey) {
     </div>`;
 }
 
-// Close expanded section (both green/yellow)
-function closeExpanded() {
+// SMALL PHOTO EXPANSION
+function expandPhoto(subjectKey) {
+  const s = subjects[subjectKey];
+  if (!s) return;
+
   document.body.classList.remove("full-green", "full-yellow");
   leftPanel.classList.remove("expanded");
+  leftPanel.classList.add("expanded-small");
+
+  leftPanel.innerHTML = `
+    <button class="close-btn" onclick="closeExpanded()">✕</button>
+    <div class="expanded-content">
+      <img src="shrek.jpg" alt="${s.alt}">
+      <h2>${s.title}</h2>
+    </div>`;
+}
+
+// CLOSE EXPANDED PANELS
+function closeExpanded() {
+  document.body.classList.remove("full-green", "full-yellow");
+  leftPanel.classList.remove("expanded", "expanded-small");
+
   leftPanel.innerHTML = `
     <div class="content-left">
       <img src="logo.png" alt="logo" class="logo">
       <h1>Tam Collection</h1>
       <p>A collection of our experience during our stay at FEU Roosevelt Marikina.</p>
     </div>`;
-  navLinks.forEach(link => link.style.color = "#1a4731");
+
+  navLinks.forEach(link => (link.style.color = "#1a4731"));
 }
 
-// About / Home
+// ABOUT & HOME BUTTONS
 document.getElementById("aboutBtn").onclick = () => {
   document.body.classList.remove("full-green");
   document.body.classList.add("full-yellow");
 };
 
-document.getElementById("homeBtn").onclick = () => {
-  closeExpanded();
-};
+document.getElementById("homeBtn").onclick = closeExpanded;
 
-// Handle FEUR Events clicks
+// EVENT LINKS (FROM DROPDOWN)
 document.querySelectorAll("#dropdownMenu a").forEach(link => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
