@@ -26,7 +26,7 @@ const subjects = {
 const events = {
   sinagtam: {
     title: "Sinag Tam",
-    images: ["shrek.jpg", "shrek.jpg", "shrek.jpg"]
+    images: ["june.jpg", "lola.jpg", "eab.jpg"]
   },
   sinagsports: {
     title: "Sinag Sports",
