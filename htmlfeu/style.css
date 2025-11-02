@@ -32,7 +32,7 @@ body {
   margin-bottom: 10px;
 }
 
-/* Rught panel */
+/* Right panel */
 .right {
   flex: 1;
   background-color: #f9e547;
@@ -171,7 +171,7 @@ nav a:hover {
 .subjects {
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: 25px;
   margin-top: 40px;
 }
 
@@ -474,4 +474,174 @@ body.full-green .right > *:not(nav) {
   .profile {
     margin-top: 20px;
   }
+}
+
+/* Combined Enlarged Photo Overlay */
+.photo-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(26, 71, 49, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeIn 0.4s ease;
+}
+
+/* === ENLARGED EVENT PHOTO OVERLAY (FULLSCREEN FIX) === */
+.photo-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.photo-box {
+  position: relative;
+  text-align: center;
+}
+
+.photo-box img {
+  max-width: 80%;
+  max-height: 80vh;
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+}
+
+/* ✕ button inside the image area */
+.photo-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.photo-close:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+/* Smooth fade-in */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.3s ease forwards;
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+/* Subject enlargement inside left panel */
+.enlarged-subject {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(26, 71, 49, 0.95);
+  padding: 20px;
+  border-radius: 20px;
+  z-index: 1000;
+  animation: fadeIn 0.4s ease;
+}
+
+.enlarged-subject .close-btn {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #1a4731;
+  border: 2px solid #f9e547;
+  color: #f9e547;
+  font-size: 1.2rem;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.enlarged-subject .close-btn:hover {
+  background: #145a32;
+  transform: scale(1.1);
+}
+
+.subject-photos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.subject-photo {
+  width: 180px;
+  height: 180px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.subject-photo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* Unified Subject Enlarge */
+.subject-enlarge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(26, 71, 49, 0.9);
+  padding: 15px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.subject-enlarge .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.subject-enlarge-box {
+  position: relative;
+}
+
+.subject-enlarge-img {
+  width: 350px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.photo-close-inside {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255,255,255,0.8);
+  border: none;
+  font-size: 16px;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
 }
