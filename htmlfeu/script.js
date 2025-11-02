@@ -8,33 +8,34 @@ const leftPanel = document.getElementById('leftPanel');
 const subjects = {
   purposive: {
     title: "Purposive Communication",
-    desc: "Discover how we learned to communicate effectively through projects and presentations.",
-    alt: "Purposive"
+    images: ["purposive(1).jpg", "purposive(2).jpg", "purposive(3).jpg"]
   },
   pe: {
     title: "Physical Education",
-    desc: "Take a look at our fun and active PE moments!",
-    alt: "PE"
+    images: ["pe(1).jpg", "pe(2).jpg", "pe(3).jpg"]
   },
   nstp: {
     title: "National Service Training Program",
-    desc: "A glimpse into our NSTP experiences and community service activities.",
-    alt: "NSTP"
+    images: ["nstp(1).jpg", "nstp(2).jpg"]
+  },
+  halloween: {
+    title: "Halloween",
+    images: ["halloween(1).jpg", "halloween(2).jpg", "halloween(3).jpg"]
   }
 };
 
 const events = {
   sinagtam: {
     title: "Sinag Tam",
-    images: ["june.jpg", "lola.jpg", "eab.jpg"]
+    images: ["sinag_tam(1).jpg", "sinag_tam(2).jpg", "sinag_tam(3).jpg"]
   },
   sinagsports: {
     title: "Sinag Sports",
-    images: ["shrek.jpg", "shrek.jpg", "shrek.jpg"]
+    images: ["sinag_sport(1).jpg", "sinag_sport(2).jpg", "sinag_sport(3).jpg"]
   },
   orientation: {
     title: "Orientation",
-    images: ["shrek.jpg", "shrek.jpg", "shrek.jpg"]
+    images: ["orientation(1).jpg", "orientation(2).jpg"]
   }
 };
 
@@ -46,7 +47,7 @@ const members = [
 
 let current = 0;
 
-// CAROUSEL
+// === CAROUSEL ===
 function showImage(index) {
   images.forEach((img, i) => img.classList.toggle('active', i === index));
   nameText.textContent = members[index].name;
@@ -62,7 +63,7 @@ nextBtn.onclick = () => {
   showImage(current);
 };
 
-// DROPDOWN MENU
+// === DROPDOWN ===
 function toggleDropdown(event) {
   event.preventDefault();
   document.getElementById("dropdownMenu").classList.toggle("show");
@@ -70,13 +71,11 @@ function toggleDropdown(event) {
 
 window.onclick = (e) => {
   if (!e.target.matches('.dropbtn')) {
-    document
-      .querySelectorAll(".dropdown-content")
-      .forEach(d => d.classList.remove("show"));
+    document.querySelectorAll(".dropdown-content").forEach(d => d.classList.remove("show"));
   }
 };
 
-// SUBJECT EXPANSION
+// === SUBJECT EXPANSION ===
 function expandSubject(subjectKey) {
   const s = subjects[subjectKey];
   if (!s) return;
@@ -85,29 +84,56 @@ function expandSubject(subjectKey) {
   leftPanel.classList.add('expanded');
   navLinks.forEach(link => link.classList.add('nav-yellow'));
 
+  const photosHTML = s.images
+    .map(
+      src => `
+      <div class="subject-photo-container">
+        <img src="${src}" alt="${s.title}" class="subject-photo" onclick="enlargeSubjectPhoto('${src}', '${s.title}')">
+      </div>`
+    )
+    .join("");
+
   leftPanel.innerHTML = `
-    <button class="close-btn" onclick="closeExpanded()">✕</button>
     <div class="expanded-content">
-      <img src="shrek.jpg" alt="${s.alt}">
+      <button class="close-btn" onclick="closeExpanded()">✕</button>
       <h2>${s.title}</h2>
+      <div class="subject-photos">${photosHTML}</div>
     </div>`;
 }
 
-// EVENT EXPANSION
+// === SUBJECT ENLARGEMENT (SMALL INSIDE GREEN DIV) ===
+function enlargeSubjectPhoto(src, title) {
+  const existing = document.querySelector(".subject-enlarge");
+  if (existing) existing.remove();
+
+  const box = document.createElement("div");
+  box.className = "subject-enlarge";
+  box.innerHTML = `
+    <div class="subject-enlarge-box">
+      <img src="${src}" alt="${title}" class="subject-enlarge-img">
+      <button class="photo-close-inside" onclick="this.closest('.subject-enlarge').remove()">✕</button>
+    </div>`;
+  leftPanel.appendChild(box);
+}
+
+// === EVENT EXPANSION (SINAG TAM, SPORTS, ORIENTATION) ===
 function expandEvent(eventKey) {
   const e = events[eventKey];
   if (!e) return;
 
   document.body.classList.add("full-green");
   leftPanel.classList.add("expanded");
-
   navLinks.forEach(link => (link.style.color = "#f9e547"));
 
   const photosHTML = e.images
     .map(
       src => `
       <img src="${src}" alt="${e.title}" 
-      style="width:250px;height:250px;border-radius:10px;margin:10px;">`
+      class="event-photo" 
+      style="width:250px;height:250px;border-radius:10px;margin:10px;cursor:pointer;transition:transform 0.3s;"
+      onmouseover="this.style.transform='scale(1.05)'"
+      onmouseout="this.style.transform='scale(1)'"
+      onclick="enlargeEventPhoto('${src}', '${e.title}')">`
     )
     .join("");
 
@@ -121,24 +147,20 @@ function expandEvent(eventKey) {
     </div>`;
 }
 
-// SMALL PHOTO EXPANSION
-function expandPhoto(subjectKey) {
-  const s = subjects[subjectKey];
-  if (!s) return;
-
-  document.body.classList.remove("full-green", "full-yellow");
-  leftPanel.classList.remove("expanded");
-  leftPanel.classList.add("expanded-small");
-
-  leftPanel.innerHTML = `
-    <button class="close-btn" onclick="closeExpanded()">✕</button>
-    <div class="expanded-content">
-      <img src="shrek.jpg" alt="${s.alt}">
-      <h2>${s.title}</h2>
+// === ENLARGE EVENT PHOTO (FULLSCREEN FIXED OVERLAY) ===
+function enlargeEventPhoto(src, title) {
+  const overlay = document.createElement('div');
+  overlay.className = 'photo-overlay';
+  overlay.innerHTML = `
+    <div class="photo-box fade-in">
+      <button class="photo-close" aria-label="Close" onclick="this.closest('.photo-overlay').remove()">✕</button>
+      <img src="${src}" alt="${title}">
     </div>`;
+  document.body.appendChild(overlay);
 }
 
-// CLOSE EXPANDED PANELS
+
+// === CLOSE PANELS ===
 function closeExpanded() {
   document.body.classList.remove("full-green", "full-yellow");
   leftPanel.classList.remove("expanded", "expanded-small");
@@ -153,7 +175,7 @@ function closeExpanded() {
   navLinks.forEach(link => (link.style.color = "#1a4731"));
 }
 
-// ABOUT & HOME BUTTONS
+// === ABOUT & HOME ===
 document.getElementById("aboutBtn").onclick = () => {
   document.body.classList.remove("full-green");
   document.body.classList.add("full-yellow");
@@ -161,7 +183,7 @@ document.getElementById("aboutBtn").onclick = () => {
 
 document.getElementById("homeBtn").onclick = closeExpanded;
 
-// EVENT LINKS (FROM DROPDOWN)
+// === EVENT LINKS ===
 document.querySelectorAll("#dropdownMenu a").forEach(link => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
@@ -169,3 +191,4 @@ document.querySelectorAll("#dropdownMenu a").forEach(link => {
     expandEvent(eventName);
   });
 });
+
