@@ -645,3 +645,44 @@ body.full-green .right > *:not(nav) {
   height: 25px;
   cursor: pointer;
 }
+
+/* bago */
+/* === STRYVE FULLSCREEN OVERLAY === */
+.stryve-overlay {
+  position: fixed; /* fixed ensures it covers entire viewport */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(16, 45, 32, 0.97); /* dark green w/ slight transparency */
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  overflow-y: auto;
+}
+
+.stryve-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.stryve-close {
+  position: fixed;
+  top: 25px;
+  right: 35px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #f9e547;
+  border: none;
+  font-size: 30px;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  z-index: 10000; /* sits above image */
+  transition: background 0.3s;
+}
+.stryve-close:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
