@@ -192,3 +192,24 @@ document.querySelectorAll("#dropdownMenu a").forEach(link => {
   });
 });
 
+// === STRYVE PAGE ===
+document.getElementById("StryveBtn").addEventListener("click", (e) => {
+  e.preventDefault();
+  showStryvePage();
+});
+
+
+// === BAGO ===
+function showStryvePage() {
+  // Add a fullscreen overlay with scroll
+  const overlay = document.createElement("div");
+  overlay.className = "stryve-overlay";
+  overlay.innerHTML = `
+    <button class="stryve-close" onclick="this.parentElement.remove()">✕</button>
+    <img src="stryve.jpg" alt="Stryve Poster" class="stryve-img">
+  `;
+  document.body.appendChild(overlay);
+}
+
+
+
